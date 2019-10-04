@@ -4,9 +4,14 @@ import org.junit.jupiter.api.*;
 
 public class VectorTest {
   @Test
-  public void evaluatesExpression() {
+  public void ConstructorTest() {
     Vector v = new Vector(2,3,5);
     Assertions.assertEquals(5,v.getElement(2));
+  }
+  @Test
+  public void outputTest() {
+    Vector v = new Vector(2,3,5);
+    Assertions.assertEquals("(2.0, 3.0, 5.0)",v.toString());
   }
   @Test
   public void dotTest() {

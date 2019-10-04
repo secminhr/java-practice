@@ -9,6 +9,13 @@ public class Vector {
   public int getDim(){
     return _v.length;
   }
+  public String toString() {
+    String result = "(" + String.valueOf(_v[0]);
+    for (int i=1;i<_v.length;i++) {
+      result += ", " + String.valueOf(_v[i]);
+    }
+    return result + ")";
+  }
   public boolean isZero() {
     for(int i=0;i<_v.length;i++){
       if(_v[i]!=0)
@@ -52,6 +59,11 @@ class Calculate {
   }
   public static double distance(Vector u,Vector v) {
     return substract(u, v).length();
+  }
+  public static double angle(Vector u, Vector v) {
+    if (u.getElement(0) * v.getElement(1) - u.getElement(1) * v.getElement(0) >=0)
+		  return Math.acos(dot(u, v) / (u.length() * v.length()));
+		return 2 * Math.PI - Math.acos(dot(u, v) / (u.length() * v.length()));
   }
   public static double area(Vector u, Vector v, Vector w) {
     var s = (Calculate.distance(u, v)+Calculate.distance(v, w)+Calculate.distance(u, w))/2;
