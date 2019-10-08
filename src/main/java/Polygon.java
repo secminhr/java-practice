@@ -1,8 +1,13 @@
-public class Polygon {
+import java.util.InputMismatchException;
+
+public class Polygon extends Shape {
     private Vector[] _v;
     private Vector center;
 
     public Polygon(Vector ... vectors) {
+        for(Vector i : vectors)
+            if(i.getDim()!=2)
+                throw new InputMismatchException("Polygon only can be calculated in two dimension!!");
         _v = vectors;
         double x[] = { 0, 0 };
         for (Vector i : _v) {
@@ -20,11 +25,13 @@ public class Polygon {
             v[i] = Calculate.substract(_v[i], center);
         return v;
     }
-
+    
+    @Override
     public double area() {
         return Calculate.area(vectorsBetweenCentroid());
     }
 
+    @Override
     public double perimeter() {
         return Calculate.perimeter(vectorsBetweenCentroid());
     }

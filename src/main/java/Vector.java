@@ -1,3 +1,5 @@
+import java.util.InputMismatchException;
+
 public class Vector {
   private double[] _v;
   public Vector(double ... elements) {
@@ -60,22 +62,23 @@ class Calculate {
   public static double distance(Vector u,Vector v) {
     return substract(u, v).length();
   }
-  public static double angle(Vector u, Vector v) {
-    if (u.getElement(0) * v.getElement(1) - u.getElement(1) * v.getElement(0) >=0)
-		  return Math.acos(dot(u, v) / (u.length() * v.length()));
-		return 2 * Math.PI - Math.acos(dot(u, v) / (u.length() * v.length()));
-  }
   public static double area(Vector u, Vector v, Vector w) {
     var s = (Calculate.distance(u, v)+Calculate.distance(v, w)+Calculate.distance(u, w))/2;
     return Math.sqrt(s*(s-Calculate.distance(u, v))*(s-Calculate.distance(v, w))*(s-Calculate.distance(u, w)));
   }
   public static double area(Vector ... v) {
+    for(Vector i : v)
+        if(i.getDim()!=2)
+            throw new InputMismatchException("Area only can be calculated in two dimension!!");
     double result = 0;
     for(int i=1;i<v.length-1;i++)
       result += area(v[0], v[i], v[i+1]);
     return result;
   }
   public static double perimeter(Vector ... v) {
+    for(Vector i : v)
+        if(i.getDim()!=2)
+            throw new InputMismatchException("Perimeter only can be calculated in two dimension!!");
     double result = distance(v[0], v[v.length-1]);
     for(int i=0;i<v.length-1;i++)
       result += distance(v[i], v[i+1]);
