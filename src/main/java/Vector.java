@@ -66,6 +66,12 @@ class Calculate {
     var s = (Calculate.distance(u, v)+Calculate.distance(v, w)+Calculate.distance(u, w))/2;
     return Math.sqrt(s*(s-Calculate.distance(u, v))*(s-Calculate.distance(v, w))*(s-Calculate.distance(u, w)));
   }
+  public static double angle(Vector u, Vector v) {
+    if(u.getElement(0)*v.getElement(1)-u.getElement(1)*v.getElement(0)>=0)
+      return Math.acos(dot(u, v)/(u.length()*v.length()));
+    else
+      return 2*Math.PI - Math.acos(dot(u, v)/(u.length()*v.length()));
+  }
   public static double area(Vector ... v) {
     for(Vector i : v)
         if(i.getDim()!=2)

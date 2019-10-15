@@ -1,15 +1,12 @@
 /**
  * Shape
  */
-public class Shape {
+public abstract class Shape {
     public Shape() {
         
     }
-    public double area() {
-        return 0;
-    }
+    
+    abstract double area();
 
-    public double perimeter() {
-        return 0;
-    }
+    abstract double perimeter();
 }

@@ -86,4 +86,9 @@ public class VectorTest {
       Calculate.perimeter(
         new Vector(0,0),new Vector(2,0),new Vector(2,2),new Vector(1,3),new Vector(0,2)),0.001);
   }
+  @Test
+  public void angleTest() {
+    Assertions.assertEquals(5*Math.PI/4,
+      Calculate.angle(new Vector(1,0), new Vector(-1,-1)));
+  }
 }
