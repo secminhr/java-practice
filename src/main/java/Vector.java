@@ -67,6 +67,8 @@ class Calculate {
     return Math.sqrt(s*(s-Calculate.distance(u, v))*(s-Calculate.distance(v, w))*(s-Calculate.distance(u, w)));
   }
   public static double angle(Vector u, Vector v) {
+    if(u.getDim()!=2 || v.getDim()!=2)
+        throw new InputMismatchException("Area only can be calculated in two dimension!!");
     if(u.getElement(0)*v.getElement(1)-u.getElement(1)*v.getElement(0)>=0)
       return Math.acos(dot(u, v)/(u.length()*v.length()));
     else
