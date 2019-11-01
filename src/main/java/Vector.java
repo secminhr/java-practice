@@ -1,4 +1,5 @@
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class Vector {
   private double[] _v;
@@ -74,22 +75,22 @@ class Calculate {
     else
       return 2*Math.PI - Math.acos(dot(u, v)/(u.length()*v.length()));
   }
-  public static double area(Vector ... v) {
+  public static double area(List<Vector> v) {
     for(Vector i : v)
         if(i.getDim()!=2)
             throw new InputMismatchException("Area only can be calculated in two dimension!!");
     double result = 0;
-    for(int i=1;i<v.length-1;i++)
-      result += area(v[0], v[i], v[i+1]);
+    for(int i=1;i<v.size()-1;i++)
+      result += area(v.get(0), v.get(i), v.get(i+1));
     return result;
   }
-  public static double perimeter(Vector ... v) {
+  public static double perimeter(List<Vector> v) {
     for(Vector i : v)
         if(i.getDim()!=2)
             throw new InputMismatchException("Perimeter only can be calculated in two dimension!!");
-    double result = distance(v[0], v[v.length-1]);
-    for(int i=0;i<v.length-1;i++)
-      result += distance(v[i], v[i+1]);
+    double result = distance(v.get(0), v.get(v.size()-1));
+    for(int i=0;i<v.size()-1;i++)
+      result += distance(v.get(i), v.get(i+1));
     return result;
   }
 }

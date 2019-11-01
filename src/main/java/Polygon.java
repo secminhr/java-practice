@@ -21,7 +21,7 @@ public class Polygon extends Shape {
         center = new Vector(x);
     }
 
-    private Vector[] vectorsBetweenCentroid(){
+    private List<Vector> vectorsBetweenCentroid(){
         var v = _v;
         for (int i = 0; i < v.size(); i++)
             v.set(i, Calculate.substract(_v.get(i), center));
@@ -33,8 +33,7 @@ public class Polygon extends Shape {
             else
                 return -1;
         });
-        Vector result[] = new Vector[v.size()];
-        return v.toArray(result);
+        return v;
     }
     
     @Override
